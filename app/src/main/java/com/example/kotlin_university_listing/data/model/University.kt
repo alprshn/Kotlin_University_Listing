@@ -4,18 +4,18 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class University(
-    @SerializedName("name") @Expose
+    @SerializedName("name")
     val name: String,
-    @SerializedName("phone") @Expose
+    @SerializedName("phone")
     val phone: String,
-    @SerializedName("fax") @Expose
+    @SerializedName("fax")
     val fax: String,
-    @SerializedName("website") @Expose
+    @SerializedName("website")
     val website: String,
-    @SerializedName("email") @Expose
+    @SerializedName("email")
     val email: String,
-    @SerializedName("address") @Expose
+    @SerializedName("address")
     val address: String,
-    @SerializedName("rector") @Expose
+    @SerializedName("rector")
     val rector: String
 )

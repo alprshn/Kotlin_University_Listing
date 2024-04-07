@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.kotlin_university_listing.data.model.Province
+import com.example.kotlin_university_listing.data.model.ProvinceResponse
 import com.example.kotlin_university_listing.data.remote.ServiceBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,14 +25,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         val call = ServiceBuilder.service.getProvinces()
-        call.enqueue(object : Callback<Province> {
-            override fun onResponse(call: Call<Province>, response: Response<Province>) {
+        call.enqueue(object : Callback<ProvinceResponse> {
+            override fun onResponse(call: Call<ProvinceResponse>, response: Response<ProvinceResponse>) {
                 if (response.isSuccessful) {
-                    val province = response.body()
-                    if (province != null) {
-                        Log.e("Response Body", province.toString())
+                    val provinceResponse = response.body()
+                    val provinces: List<Province> = provinceResponse!!.data
 
-                        for (university in province.universities) {
+                    if (response != null) {
+                        Log.e("Response Body", response.toString())
+
+                        for (university in     provinces[0].universities) {
                             Log.e("University", university.name)
                             // Diğer üniversite özelliklerini burada kullanabilirsiniz
                         }
@@ -43,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<Province>, t: Throwable) {
+            override fun onFailure(call: Call<ProvinceResponse>, t: Throwable) {
                 Log.e("API Call Failed", t.message ?: "Unknown error")
             }
         })

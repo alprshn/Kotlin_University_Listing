@@ -4,10 +4,10 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class Province(
-    @SerializedName("id") @Expose
+    @SerializedName("id")
     val id: Int,
-    @SerializedName("province") @Expose
+    @SerializedName("province")
     val province: String,
-    @SerializedName("universities") @Expose
+    @SerializedName("universities")
     val universities: List<University>
 )
