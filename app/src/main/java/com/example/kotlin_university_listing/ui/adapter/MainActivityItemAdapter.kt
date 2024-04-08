@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin_university_listing.R
 import com.example.kotlin_university_listing.data.model.RecyclerViewData
 
-class MainActivityItemAdapter(private val mList: List<RecyclerViewData>): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class MainActivityItemAdapter(private val mList: List<RecyclerViewData>): RecyclerView.Adapter<MainActivityItemAdapter.MainActivityItemDesignHolder>(){
 
     inner class MainActivityItemDesignHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val linearLayout: LinearLayout = itemView.findViewById(R.id.linear_layout)
@@ -20,7 +20,7 @@ class MainActivityItemAdapter(private val mList: List<RecyclerViewData>): Recycl
         val mArrowImage: ImageView = itemView.findViewById(R.id.arro_imageview)
         val nestedRecyclerView: RecyclerView = itemView.findViewById(R.id.child_rv)
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainActivityItemDesignHolder {
     var view:View = LayoutInflater.from(parent.context).inflate(R.layout.each_item, parent, false)
         return MainActivityItemDesignHolder(view)
     }
@@ -29,7 +29,11 @@ class MainActivityItemAdapter(private val mList: List<RecyclerViewData>): Recycl
         return mList.size
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+    override fun onBindViewHolder(holder: MainActivityItemDesignHolder, position: Int) {
+        var model: RecyclerViewData = mList[position]
+        holder.mTextView.text = model.itemText
+
+        var isExpandable:Boolean = model.isExpandable
+
     }
 }
