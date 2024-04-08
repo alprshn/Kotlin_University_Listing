@@ -7,6 +7,7 @@
     import android.widget.LinearLayout
     import android.widget.RelativeLayout
     import android.widget.TextView
+    import androidx.recyclerview.widget.LinearLayoutManager
     import androidx.recyclerview.widget.RecyclerView
     import com.example.kotlin_university_listing.R
     import com.example.kotlin_university_listing.data.model.RecyclerViewData
@@ -41,6 +42,12 @@
             else{
                 holder.mArrowImage.setImageResource(R.drawable.arrow_down)
             }
+
+
+            var adapter: NestedAdapter = NestedAdapter(list)
+            holder.nestedRecyclerView.layoutManager = LinearLayoutManager( holder.itemView.context)
+            holder.nestedRecyclerView.setHasFixedSize(true)
+            holder.nestedRecyclerView.adapter = adapter
             holder.linearLayout.setOnClickListener {
                 model.isExpandable = !model.isExpandable
                 list = model.nestedList
