@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin_university_listing.R
 import com.example.kotlin_university_listing.data.model.Province
@@ -27,6 +28,12 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        recylerView = findViewById(R.id.main_rc_view)
+        recylerView.setHasFixedSize(true)
+        recylerView.layoutManager = LinearLayoutManager(this)
+
+
 
         RequestApi()///////Api Çekme Fonksiyounu
     }
