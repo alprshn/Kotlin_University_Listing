@@ -30,13 +30,11 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val provinceResponse = response.body()
                     val provinces: List<Province> = provinceResponse!!.data
-
                     if (response != null) {
                         Log.e("Response Body", response.toString())
 
-                        for (university in     provinces[0].universities) {
+                        for (university in provinces[1].universities) {
                             Log.e("University", university.name)
-                            // Diğer üniversite özelliklerini burada kullanabilirsiniz
                         }
                     } else {
                         Log.e("Response Body Null", "Response body is null")
