@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin_university_listing.R
 import com.example.kotlin_university_listing.data.model.Province
 import com.example.kotlin_university_listing.data.model.ProvinceResponse
@@ -15,6 +16,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var recylerView:RecyclerView;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,6 +28,12 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        RequestApi()///////Api Çekme Fonksiyounu
+    }
+
+
+    fun RequestApi(){
+        ///////Api Çekme
         val call = ServiceBuilder.service.getProvinces()
         call.enqueue(object : Callback<ProvinceResponse> {
             override fun onResponse(call: Call<ProvinceResponse>, response: Response<ProvinceResponse>) {
@@ -49,7 +58,11 @@ class MainActivity : AppCompatActivity() {
                 Log.e("API Call Failed", t.message ?: "Unknown error")
             }
         })
-
-
+        /////////// Api çekmenin bittiği yer
     }
+
+
+
+
+
 }
