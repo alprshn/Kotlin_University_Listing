@@ -11,14 +11,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin_university_listing.R
 import com.example.kotlin_university_listing.data.model.Province
 import com.example.kotlin_university_listing.data.model.ProvinceResponse
+import com.example.kotlin_university_listing.data.model.RecyclerViewData
 import com.example.kotlin_university_listing.data.remote.ServiceBuilder
+import com.example.kotlin_university_listing.ui.adapter.MainActivityItemAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var recylerView:RecyclerView;
+    private lateinit var recyclerView:RecyclerView
+    private lateinit var mList:List<RecyclerViewData>
+    private lateinit var adapter : MainActivityItemAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -29,9 +34,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        recylerView = findViewById(R.id.main_rc_view)
-        recylerView.setHasFixedSize(true)
-        recylerView.layoutManager = LinearLayoutManager(this)
+        recyclerView = findViewById(R.id.main_rc_view)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
 
 
