@@ -12,7 +12,7 @@ import com.example.kotlin_university_listing.R
 import com.example.kotlin_university_listing.data.model.RecyclerViewData
 
 class MainActivityItemAdapter(private val mList: List<RecyclerViewData>): RecyclerView.Adapter<MainActivityItemAdapter.MainActivityItemDesignHolder>(){
-
+    private lateinit var list: List<String>
     inner class MainActivityItemDesignHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val linearLayout: LinearLayout = itemView.findViewById(R.id.linear_layout)
         val expandableLayout: RelativeLayout = itemView.findViewById(R.id.expandable_layout)
@@ -41,9 +41,10 @@ class MainActivityItemAdapter(private val mList: List<RecyclerViewData>): Recycl
         else{
             holder.mArrowImage.setImageResource(R.drawable.arrow_down)
         }
-
         holder.linearLayout.setOnClickListener {
             model.isExpandable = !model.isExpandable
+            list = model.nestedList
+            notifyItemChanged(holder.adapterPosition)
         }
     }
 }
