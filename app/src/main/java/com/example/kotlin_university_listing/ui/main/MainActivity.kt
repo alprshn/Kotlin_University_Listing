@@ -21,7 +21,7 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView:RecyclerView
-    private lateinit var mList:List<RecyclerViewData>
+    private lateinit var mList:MutableList<RecyclerViewData>
     private lateinit var adapter : MainActivityItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +38,20 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        mList = mutableListOf()
+
+        var nestedList1 : MutableList<String> = mutableListOf()
+        nestedList1.add("selam")
+
+        var nestedList2 : MutableList<String> = mutableListOf()
+        nestedList2.add("iyi")
+
+        mList.add(RecyclerViewData(nestedList1,"Deneme Adımı"))
+
+        mList.add(RecyclerViewData(nestedList2,"asdsadsa Adımıdasdas"))
+
+        adapter = MainActivityItemAdapter(mList)
+        recyclerView.adapter = adapter
 
 
         RequestApi()///////Api Çekme Fonksiyounu
