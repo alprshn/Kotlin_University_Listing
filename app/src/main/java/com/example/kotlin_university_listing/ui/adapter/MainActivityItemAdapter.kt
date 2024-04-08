@@ -34,6 +34,16 @@ class MainActivityItemAdapter(private val mList: List<RecyclerViewData>): Recycl
         holder.mTextView.text = model.itemText
 
         var isExpandable:Boolean = model.isExpandable
+        holder.expandableLayout.visibility = if (isExpandable) View.VISIBLE else View.GONE
+        if (isExpandable){
+            holder.mArrowImage.setImageResource(R.drawable.arrow_up)
+        }
+        else{
+            holder.mArrowImage.setImageResource(R.drawable.arrow_down)
+        }
 
+        holder.linearLayout.setOnClickListener {
+            model.isExpandable = !model.isExpandable
+        }
     }
 }
