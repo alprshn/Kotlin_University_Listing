@@ -8,4 +8,6 @@ import retrofit2.http.GET
 interface ApiService {
     @GET("page-1.json")
     fun getProvinces(): Call<ProvinceResponse>
+
+
 }

@@ -24,7 +24,7 @@
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="CodingSTUFF"
+                android:text="1. Item"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
