@@ -21,7 +21,7 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView:RecyclerView
-    private lateinit var mList:MutableList<RecyclerViewData>
+    //private lateinit var mList:MutableList<RecyclerViewData>
     private lateinit var adapter : MainActivityItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,28 +34,38 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        recyclerView = findViewById(R.id.main_rc_view)
-        recyclerView.setHasFixedSize(true)
+        // Örnek veri oluşturma
+        val nestedList = listOf("Child 1", "Child 2", "Child 3")
+        val nestedViewList = listOf(
+            RecyclerViewData(listOf("Nested Child 1", "Nested Child 2"), "Nested Item 1"),
+            RecyclerViewData(listOf("Nested Child 3", "Nested Child 4"), "Nested Item 2")
+        )
+        val recyclerViewDataList = listOf(
+            RecyclerViewData(nestedList, "Item 1"),
+            RecyclerViewData(nestedList, "Item 2", false, nestedViewList),
+            RecyclerViewData(nestedList, "Item 2", false, nestedViewList),
+            RecyclerViewData(nestedList, "Item 2", false, nestedViewList),
+            RecyclerViewData(nestedList, "Item 2", false, nestedViewList),
+            RecyclerViewData(nestedList, "Item 2", false, nestedViewList),
+            RecyclerViewData(nestedList, "Item 2", false, nestedViewList),
+            RecyclerViewData(nestedList, "Item 2", false, nestedViewList),
+            RecyclerViewData(nestedList, "Item 2", false, nestedViewList),
+            RecyclerViewData(nestedList, "Item 2", false, nestedViewList),
+            
+        )
+
+        // RecyclerView tanımı ve adapter ayarı
+        val recyclerView: RecyclerView = findViewById(R.id.main_rc_view)
+        val adapter = MainActivityItemAdapter(recyclerViewDataList)
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-        mList = mutableListOf()
-
-        var nestedList1 : MutableList<String> = mutableListOf()
-        nestedList1.add("selam")
-
-        var nestedList2 : MutableList<String> = mutableListOf()
-        nestedList2.add("iyi")
-
-        mList.add(RecyclerViewData(nestedList1,"Deneme Adımı"))
-
-        mList.add(RecyclerViewData(nestedList2,"asdsadsa Adımıdasdas"))
-
-        adapter = MainActivityItemAdapter(mList)
         recyclerView.adapter = adapter
 
 
         RequestApi()///////Api Çekme Fonksiyounu
     }
+
+
+
 
 
     fun RequestApi(){

@@ -12,8 +12,9 @@
     import com.example.kotlin_university_listing.R
     import com.example.kotlin_university_listing.data.model.RecyclerViewData
 
-    class MainActivityItemAdapter(private val mList: List<RecyclerViewData>): RecyclerView.Adapter<MainActivityItemAdapter.MainActivityItemDesignHolder>(){
-        private var list: List<String> = ArrayList()
+    class MainActivityItemAdapter(private val mList: List<RecyclerViewData>): RecyclerView.Adapter<MainActivityItemAdapter.MainActivityItemDesignHolder>(),
+        NestedAdapter.NestedAdapterCallback {
+
         inner class MainActivityItemDesignHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val linearLayout: LinearLayout = itemView.findViewById(R.id.linear_layout)
             val expandableLayout: RelativeLayout = itemView.findViewById(R.id.expandable_layout)
@@ -21,8 +22,9 @@
             val mArrowImage: ImageView = itemView.findViewById(R.id.arro_imageview)
             val nestedRecyclerView: RecyclerView = itemView.findViewById(R.id.child_rv)
         }
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainActivityItemDesignHolder {
-            var view:View = LayoutInflater.from(parent.context).inflate(R.layout.each_item, parent, false)
+            val view: View = LayoutInflater.from(parent.context).inflate(R.layout.each_item, parent, false)
             return MainActivityItemDesignHolder(view)
         }
 
@@ -31,27 +33,27 @@
         }
 
         override fun onBindViewHolder(holder: MainActivityItemDesignHolder, position: Int) {
-            var model: RecyclerViewData = mList[position]
+            val model: RecyclerViewData = mList[position]
             holder.mTextView.text = model.itemText
 
-            var isExpandable:Boolean = model.isExpandable
+            val isExpandable: Boolean = model.isExpandable
             holder.expandableLayout.visibility = if (isExpandable) View.VISIBLE else View.GONE
-            if (isExpandable){
-                holder.mArrowImage.setImageResource(R.drawable.arrow_up)
-            }
-            else{
-                holder.mArrowImage.setImageResource(R.drawable.arrow_down)
-            }
+            holder.mArrowImage.setImageResource(if (isExpandable) R.drawable.arrow_up else R.drawable.arrow_down)
 
-
-            var adapter: NestedAdapter = NestedAdapter(list)
-            holder.nestedRecyclerView.layoutManager = LinearLayoutManager( holder.itemView.context)
-            holder.nestedRecyclerView.setHasFixedSize(true)
-            holder.nestedRecyclerView.adapter = adapter
             holder.linearLayout.setOnClickListener {
                 model.isExpandable = !model.isExpandable
-                list = model.nestedList
                 notifyItemChanged(holder.adapterPosition)
             }
+
+            val adapter = NestedAdapter(model.nestedViewList,this)
+            holder.nestedRecyclerView.layoutManager = LinearLayoutManager(holder.itemView.context)
+            holder.nestedRecyclerView.setHasFixedSize(true)
+            holder.nestedRecyclerView.adapter = adapter
+
+
+        }
+
+        override fun onNestedItemExpanded(position: Int) {
+            notifyItemChanged(position)
         }
     }
