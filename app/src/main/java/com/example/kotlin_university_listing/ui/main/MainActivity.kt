@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin_university_listing.R
 import com.example.kotlin_university_listing.data.model.Province
 import com.example.kotlin_university_listing.data.model.ProvinceResponse
-import com.example.kotlin_university_listing.data.model.RecyclerViewData
 import com.example.kotlin_university_listing.data.remote.ServiceBuilder
 import com.example.kotlin_university_listing.ui.adapter.ThreeLevelListAdapter
 import retrofit2.Call
@@ -56,7 +55,6 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun RequestApi(){
-        val recyclerViewDataList = mutableListOf<RecyclerViewData>()
         val call = ServiceBuilder.service.getProvinces()
         call.enqueue(object : Callback<ProvinceResponse> {
             override fun onResponse(call: Call<ProvinceResponse>, response: Response<ProvinceResponse>) {
