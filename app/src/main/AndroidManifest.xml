@@ -17,6 +17,9 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".ui.main.WebViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.main.FavoriteListActivity"
             android:exported="false" />
         <activity
