@@ -68,9 +68,9 @@ class MainActivity : AppCompatActivity() {
                             Log.e("University", provinces[i].province)
                             cityNames.add(provinces[i].province)
                         }
-                        val threeLevelListAdapterAdapter = ThreeLevelListAdapter(this@MainActivity, cityNames.toTypedArray(), secondLevel, data)
+                        val threeLevelListAdapterAdapter = ThreeLevelListAdapter(applicationContext, cityNames.toTypedArray(), secondLevel, data)
                         setUpAdapter(threeLevelListAdapterAdapter)
-                        // adapter.notifyDataSetChanged() // Adaptördeki değişiklikleri güncelle
+                        threeLevelListAdapterAdapter.notifyDataSetChanged() // Adaptördeki değişiklikleri güncelle
 
                     } else {
                         Log.e("Response Body Null", "Response body is null")
