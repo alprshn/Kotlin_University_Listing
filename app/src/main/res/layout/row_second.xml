@@ -35,12 +35,13 @@
     <ImageView
         android:layout_gravity="end"
         android:id="@+id/favorite_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:src="@drawable/empty_hearth"
-        android:onClick="onFavoriteButtonClick"
+        android:clickable="true"
+        android:layout_margin="20dp"
         />
 
 </LinearLayout>

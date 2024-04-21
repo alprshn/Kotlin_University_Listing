@@ -51,20 +51,24 @@ class SecondLevelAdapter(private val context: Context, private val headers: Arra
         var checkFavorite: Boolean = false
 
         favoriteButton.setOnClickListener {
-            val currentSrc = favoriteButton.drawable
 
-            // Mevcut src'yi kontrol ederek favori butonunun durumunu değiştirin
-            if (currentSrc == ContextCompat.getDrawable(context, R.drawable.empty_hearth)) {
-                // Eğer boş kalp görünüyorsa dolu kalp olarak değiştirin
+            if (checkFavorite){
                 favoriteButton.setImageResource(R.drawable.filled_hearth)
-            } else {
-                // Eğer dolu kalp görünüyorsa boş kalp olarak değiştirin
+                checkFavorite = false
+            }else{
                 favoriteButton.setImageResource(R.drawable.empty_hearth)
+                checkFavorite = true
             }
+
+
             // Burada favori butonuna tıklandığında yapılacak işlemi tanımlayabilirsiniz
             // Örneğin, bir bildirim gösterebilir, favorilere ekleyebilir veya çıkarabilirsiniz
             // İlgili özelliklere erişip işlem yapabilirsiniz.
             // Örneğin, p0 ve p1 değerlerini kullanarak verilere erişebilirsiniz.
+
+
+            //checkFavorite = true
+           // favoriteButton.setImageResource(R.drawable.filled_hearth)
         }
 
 
