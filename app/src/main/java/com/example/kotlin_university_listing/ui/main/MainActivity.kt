@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     //private val des4 = arrayOf("This list contains relative layout information,Displays a scrolling grid of columns and rows")
     //private val des5 = arrayOf("Under the RecyclerView model, several different components work together to display your data. Some of these components can be used in their unmodified form; for example, your app is likely to use the RecyclerView class directly. In other cases, we provide an abstract class, and your app is expected to extend it; for example, every app that uses RecyclerView needs to define its own view holder, which it does by extending the abstract RecyclerView.ViewHolder class.")
 
-    //private val thirdLevelq1 = LinkedHashMap<String, Array<String>>()
+    private val thirdLevelq1 = LinkedHashMap<String, Array<String>>()
 
 
     //private val secondLevel = ArrayList<Array<String>>()
@@ -77,16 +77,25 @@ class MainActivity : AppCompatActivity() {
                         Log.e("Response Body", response.toString())
 
                         for (i in 0..provinces.size-1 ) {
-                            Log.e("University", provinces[i].province)
+                            //Log.e("University", provinces[i].province)
                             cityNames.add(provinces[i].province)
                             val universitiesInProvince = provinces[i].universities.map { it.name }.toTypedArray()
                             universityNames.add(universitiesInProvince)
-                            val thirdLevel = LinkedHashMap<String, Array<String>>()
+
+
                             for (university in provinces[i].universities) {
-                                val desArray = university.address
-                                thirdLevel[university.name] = arrayOf(desArray)
+                                val universityInfo = arrayOf(
+                                    "Phone: ${university.phone}",
+                                    "Fax: ${university.fax}",
+                                    "Website: ${university.website}",
+                                    "Email: ${university.email}",
+                                    "Address: ${university.address}",
+                                    "Rector: ${university.rector}"
+                                )
+                                // Üniversite adını anahtar olarak kullanarak üçüncü seviye verilerini ekleyin
+                                thirdLevelq1[university.name] = universityInfo
                             }
-                            data.add(thirdLevel)
+                            data.add(thirdLevelq1)
 
                         }
                         val threeLevelListAdapterAdapter = ThreeLevelListAdapter(applicationContext, cityNames.toTypedArray(), universityNames, data)

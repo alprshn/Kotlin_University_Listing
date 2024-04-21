@@ -16,8 +16,7 @@ class SecondLevelAdapter(private val context: Context, private val headers: Arra
     }
 
     override fun getChildrenCount(p0: Int): Int {
-        var children: Array<String>
-        children = data.get(p0)
+        var children: Array<String> = data[p0]
         return children.size
     }
 

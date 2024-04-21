@@ -14,7 +14,7 @@ data class University(
     val website: String,
     @SerializedName("email")
     val email: String,
-    @SerializedName("address")
+    @SerializedName("adress")
     val address: String,
     @SerializedName("rector")
     val rector: String
