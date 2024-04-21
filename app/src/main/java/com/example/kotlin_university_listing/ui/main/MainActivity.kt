@@ -2,7 +2,9 @@ package com.example.kotlin_university_listing.ui.main
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ExpandableListView
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -49,11 +51,20 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
+        FavoriteListButton()
         RequestApi()
     }
 
 
+    private fun FavoriteListButton(){
+        val favoriteButton = findViewById<ImageView>(R.id.favorite_list)
 
+        favoriteButton.setOnClickListener {
+
+        }
+    }
     private fun RequestApi(){
         val call = ServiceBuilder.service.getProvinces()
         call.enqueue(object : Callback<ProvinceResponse> {
