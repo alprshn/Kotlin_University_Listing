@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.ExpandableListView
 import android.widget.TextView
+import android.widget.Toast
 import com.example.kotlin_university_listing.R
 
 class ThreeLevelListAdapter(private val context: Context, private val parentHeaders:Array<String>, private val secondLevel: List<Array<String>>,private val data: List<LinkedHashMap<String, Array<String>>>): BaseExpandableListAdapter() {
@@ -65,14 +66,11 @@ class ThreeLevelListAdapter(private val context: Context, private val parentHead
             }
         })
 
-        secondLevelELV.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
-            Log.e("deneme", "Başarı ile Tıklandı")
-            true // İşlemin başarılı olduğunu belirtmek için true döndürün
-        }
+
         return secondLevelELV
     }
 
     override fun isChildSelectable(p0: Int, p1: Int): Boolean {
-        return true
+        return false
     }
 }

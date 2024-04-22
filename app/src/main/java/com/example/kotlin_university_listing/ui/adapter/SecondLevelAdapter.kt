@@ -1,6 +1,8 @@
 package com.example.kotlin_university_listing.ui.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.kotlin_university_listing.R
+import com.example.kotlin_university_listing.ui.main.FavoriteListActivity
+import com.example.kotlin_university_listing.ui.main.WebViewActivity
 
 class SecondLevelAdapter(private val context: Context, private val headers: Array<String>, private val data: List<Array<String>>) : BaseExpandableListAdapter()  {
     override fun getGroupCount(): Int {
@@ -87,10 +91,26 @@ class SecondLevelAdapter(private val context: Context, private val headers: Arra
 
         textView.text = text
 
+        view.setOnClickListener {
+            Log.e("deneme", p0.toString())
+            Log.e("deneme", p1.toString())
+            Log.e("deneme", p3.toString())
+            Log.e("deneme", getChild(p0,p1).toString())
+            if (p1 == 2){
+                val intent = Intent(context, WebViewActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                context.startActivity(intent)
+            }
+
+            //getChild(p0,p1)
+
+        }
+
         return view
     }
 
     override fun isChildSelectable(p0: Int, p1: Int): Boolean {
-        return true
+        return false
     }
 }
+

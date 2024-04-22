@@ -6,10 +6,12 @@ import android.util.Log
 import android.view.View
 import android.widget.ExpandableListView
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin_university_listing.R
@@ -51,6 +53,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        expandableListView = findViewById(R.id.expandable_listview)
 
 
         FavoriteListButton()
@@ -92,8 +95,10 @@ class MainActivity : AppCompatActivity() {
                                     "Address: ${university.address}",
                                     "Rector: ${university.rector}"
                                 )
+
                                 // Üniversite adını anahtar olarak kullanarak üçüncü seviye verilerini ekleyin
                                 thirdLevelq1[university.name] = universityInfo
+
                             }
                             data.add(thirdLevelq1)
 
@@ -130,7 +135,26 @@ class MainActivity : AppCompatActivity() {
         //data.add(thirdLevelq2)
         //data.add(thirdLevelq3)
 
-        expandableListView = findViewById(R.id.expandable_listview)
+        Log.e("deneme",expandableListView.toString())
+        expandableListView.setOnGroupClickListener(object :ExpandableListView.OnGroupClickListener{
+            override fun onGroupClick(
+                p0: ExpandableListView?,
+                p1: View?,
+                p2: Int,
+                p3: Long
+            ): Boolean {
+                Log.e("deneme","başardın")
+
+                return false
+
+            }
+
+        })
+
+       // expandableListView.selectedPosition
+
+
+
         expandableListView.setAdapter(threeLevelListAdapterAdapter)
         expandableListView.setOnGroupExpandListener(object : ExpandableListView.OnGroupExpandListener {
             var previousGroup = -1
