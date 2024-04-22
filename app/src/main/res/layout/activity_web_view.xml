@@ -7,5 +7,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.WebViewActivity">
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/webView_toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:background="?attr/colorPrimary"
+      android:elevation="4dp"
+      android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+      >
+    <ImageView
+        android:id="@+id/webView_backButton"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/arrow_back"
+        app:layout_constraintVertical_bias="0.5"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:layout_gravity="start"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="deneme"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        />
+  </androidx.appcompat.widget.Toolbar>
 
   </androidx.constraintlayout.widget.ConstraintLayout>

@@ -103,8 +103,6 @@ class SecondLevelAdapter(private val context: Context, private val headers: Arra
                 intent.putExtra("web_url", url)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 context.startActivity(intent)
-
-
             }
 
 
