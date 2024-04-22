@@ -98,11 +98,16 @@ class SecondLevelAdapter(private val context: Context, private val headers: Arra
             Log.e("deneme", getChild(p0,p1).toString())
             if (p1 == 2){
                 val intent = Intent(context, WebViewActivity::class.java)
+                val website = getChild(p0,p1).toString()
+                val url = website.substringAfter(": ")
+                intent.putExtra("web_url", url)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 context.startActivity(intent)
+
+
             }
 
-            //getChild(p0,p1)
+
 
         }
 
