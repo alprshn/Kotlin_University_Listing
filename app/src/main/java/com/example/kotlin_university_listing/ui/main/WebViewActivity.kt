@@ -2,6 +2,7 @@ package com.example.kotlin_university_listing.ui.main
 
 import android.os.Bundle
 import android.util.Log
+import android.webkit.WebView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -19,8 +20,12 @@ class WebViewActivity : AppCompatActivity() {
             insets
         }
 
-        val uniWebUrl = intent.getStringExtra("web_url")
-        Log.e("webview",uniWebUrl.toString())
+        val uniWebUrl = intent.getStringExtra("web_url").toString()
+        Log.e("webview",uniWebUrl)
+        val webView = findViewById<WebView>(R.id.webView)
+        webView.loadUrl(uniWebUrl)
+
+
 
     }
 }
