@@ -2,6 +2,7 @@ package com.example.kotlin_university_listing.ui.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -103,6 +104,16 @@ class SecondLevelAdapter(private val context: Context, private val headers: Arra
                 intent.putExtra("web_url", url)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 context.startActivity(intent)
+            }
+
+            if (p1 == 0){
+                val intent = Intent(Intent.ACTION_DIAL)
+                val phoneNumber = getChild(p0,p1).toString()
+                val phone = phoneNumber.substringAfter(": ")
+                intent.setData(Uri.parse("tel:${phone}"))
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                context.startActivity(intent)
+
             }
 
 
