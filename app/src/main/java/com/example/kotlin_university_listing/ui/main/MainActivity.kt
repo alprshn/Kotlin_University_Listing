@@ -152,8 +152,6 @@ class MainActivity : AppCompatActivity() {
 
         })
 
-       // expandableListView.selectedPosition
-
 
 
         expandableListView.setAdapter(threeLevelListAdapterAdapter)

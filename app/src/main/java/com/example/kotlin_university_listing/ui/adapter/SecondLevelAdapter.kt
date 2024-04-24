@@ -124,7 +124,7 @@ class SecondLevelAdapter(private val context: Context, private val headers: Arra
     }
 
     override fun isChildSelectable(p0: Int, p1: Int): Boolean {
-        return false
+        return true
     }
 }
 
